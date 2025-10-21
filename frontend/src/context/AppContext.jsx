@@ -7,7 +7,14 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '₹'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    // Normalize backend URL: ensure protocol and remove trailing slashes
+    const rawBackendUrl = import.meta.env.VITE_BACKEND_URL || ''
+    let backendUrl = rawBackendUrl.trim()
+    if (backendUrl && !/^https?:\/\//i.test(backendUrl)) {
+        backendUrl = `https://${backendUrl}`
+    }
+    // remove any trailing slash(es)
+    backendUrl = backendUrl.replace(/\/+$/, '')
 
     const [doctors, setDoctors] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
