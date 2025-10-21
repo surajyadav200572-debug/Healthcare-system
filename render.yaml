@@ -4,11 +4,10 @@ services:
     env: node
     plan: free
     region: oregon
-  # Run npm inside the backend folder so Render finds backend/package.json
-  buildCommand: "npm --prefix backend install"
-  startCommand: "npm --prefix backend start"
-    repo: "REPLACE_WITH_YOUR_GIT_REPO_URL"
+    repo: https://github.com/surajyadav200572-debug/Healthcare-system
     branch: main
+    buildCommand: "npm --prefix backend install"
+    startCommand: "npm --prefix backend start"
     envVars:
       - key: MONGODB_URI
         value: ""
