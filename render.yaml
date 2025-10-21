@@ -4,8 +4,9 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: "npm install"
-    startCommand: "npm start"
+  # Run npm inside the backend folder so Render finds backend/package.json
+  buildCommand: "npm --prefix backend install"
+  startCommand: "npm --prefix backend start"
     repo: "REPLACE_WITH_YOUR_GIT_REPO_URL"
     branch: main
     envVars:
